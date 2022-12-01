@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>원페이지 Parallax Scroll 구현</title>
+    <link rel="stylesheet" href="../css/pr.css">
+</head>
+<body>
+    <!-- #wrap 은 문서 전체를 감싸 주는 부분입니다. -->
+    <div class="wrap">
+        <nav id="navi">
+            <h1>
+                <a href="https://www.yao.or.kr:451/">
+                    <img src="../images/2792947_star_xmas_icon.svg" width="100px" height="100px" alt="로고이미지">
+                </a>
+            </h1>
+            <ul class="main-nav">
+                <li><a href="#ms1" class="scroll">영월 별마로천문대</a></li>
+                <li><a href="#ms2" class="scroll">예천 천문우주센터</a></li>
+                <li><a href="#ms3" class="scroll">서귀포천문과학문화관</a></li>
+            </ul>
+        </nav>
+        <!-- 제일 먼저 3개의 섹션으로 나누어 각 섹션에 배경 이미지를 삽입하고,
+        배경 이미지 위로 텍스트가 흘러가도록 설정합니다. -->
+        <!-- 첫 번째 섹션 정의 -->
+        <div id="ms1" class="container bg-holder" data-width="1200" data-height="600">
+            <section class="content">
+                <h3>영월 별마로천문대</h3>
+                <p>
+                    별마로 별 + 마루(정상) + 로(고요할 로)의 합성어로
+                    '별을 보는 고요한 정상' 이라는 뜻입니다.
+                    
+                    별마로천문대는 시민천문대 최상의 관측조건인 해발 799.8m에
+                    자리하고 있으며, 지름 800mm 주망원경과 여러대의 보조망원경이
+                    설치되어 있어 달이나 행성, 별을 관측할 수 있습니다.
+                    
+                    천문대가 위치한 봉래산 정상에는 활공장이 있어 넓은 시야로 풍경을
+                    감상할 수 있으며 산 정상에서 내려다 보는 영월읍내 야경도 천체관측과
+                    함께 색다른 즐거움을 제공합니다. 
+                    쿠웨이트 선왕의 이름을 땄을 정도로 중요한 국책 사업입니다.
+                </p>
+            </section>
+        </div>
+            <!-- 두번째 섹션 정의 -->
+            <div id="ms2" class="container bg-holder" data-width="1200" data-height="600">
+                <section class="content">
+                    <h3 style="color:rgb(240, 181, 227)">예천 천문우주센터</h3>
+                    <p style="color:rgb(183, 224, 170)">
+                        508mm 대형반사망원경과 다양한 천체관측장비, <br>
+                        4채널 디지털 플라네타리움(우주영상실), 강당, 관측자 숙소 등의 시설을 갖춘 천문대입니다.
+                    </p>
+                </section>
+            </div>
+
+            <!-- 세번째 섹션 정의 -->
+            <div id="ms3" class="container bg-holder" data-width="1200" data-height="600">
+                <section class="content">
+                    <h3 style="color: rgb(53, 37, 192)">서귀포천문과학문화관</h3>
+                    <p style="color: rgb(105, 22, 22)">
+                        서귀포천문과학문화관에서는...
+                        사람들은 언제부터 하늘을 바라보았을까요?
+                        
+                        우리가 생각할 수 없는 오래 전부터 사람들은 하늘을 바라보았고 하늘에 수많은 이야기들을 새겨놓았습니다. 사람들이 살아온 많은 이야기가 하늘에 새겨져 있고 먼 미래에는 사람들이 살아갈 장소가 될 하늘, 우주입니다.
+                        
+                        서귀포천문과학문화관은 무병장수를 상징하는 별인 '노인성(canopus)'을 관측하기에 최적의 장소로서 천문우주관련 전시물들과 밤하늘의 천체 및 태양을 관측할 수 있는 천체 망원경들을 보유하고 있으며 아울러 가상의 밤하늘과 디지털 영상을 상영할 수 있는 천체 투영실을 갖추고 있습니다. 자! 이제 아름다운 밤하늘로 여행을 떠나보실까요?
+                    </p>
+                </section>
+            </div>
+    </div>
+    <script src="../javascript/jquery-3.3.1.min.js"></script>
+    <script src="../javascript/jquery.parallax-scroll.min.js"></script>
+    <script>
+        $(function(){
+            $('.scroll').click(function(e){
+                //이벤트가 발생했을 때의 기본동작, 즉 #ms1 이나 #ms2로 즉시 이동하는 동작을 취소합니다.
+                e.preventDefault();
+                //animate(height,speed)메서드로 지정한 시간동안 현재 해시의 top 오프셋 값(맨 위에서부터 섹션까지의 오프셋 값)을 스크롤 했을 때의 위치값으로 바꿉니다. 예를 들어, "CH07 KBS" 를 클릭하면, 문서 맨 윗부분에서 #ms2 까지의 top 위치까지 500미리쵸(0.5초)동안 스크롤해서 이동합니다. 그리고, 부라우저로 확인해 보면 링크를 클릭했을때 해당 위치까지 스크롤하듯 천천히 이동하는 것을 볼 수 있습니다.
+                $('html,body').animate(
+                    {scrollTop:$(this.hash).offset().top},500);
+            });
+            //브라우저 창의 크기를 조절했을때 내용 전체가 브라우저 창의 너비와 높이에 딱 맞게 표시되도록 jQuery 를 사용해 브라우저 창의 크기를 알아낸 후 현재 문서의 너비와 높이로 지정해야 합니다. 그러면 섹션이 화면에 가득차게 만드는 효과 구현이 가능합니다.
+            $(window).resize(function(){
+                $('.container').width($(window).width()).height($(window).height());
+            });
+            setTimeout(function(){
+                $(window).resize()},1000);
+
+                //.bg-holder 요소에서 parallaxScroll을 실행합니다
+                $('.bg-holder').parallaxScroll({
+                    //paralax-scroll 플러그인의 옵션은 friction 옵션 하나뿐입니다. 이 옵션 값은 0에서 1사이의 소수로 표시하는데, 0이면 배경 이미지가 콘텐츠를 따라 스크롤 되고, 1이면 배경이 완전히 고정되어 콘텐츠만 스크롤 됩니다. 0과 1의 사의 값을 적절히 사용하면 콘텐츠와 배경의 스크롤 속도를 다르게 해서 패럴렉스 효과를 낼수 있습니다.
+                        friction: 0.5
+                        });
+            });
+            
+        
+    </script>
+</body>
+</html>

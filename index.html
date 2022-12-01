@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대한천문대</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="javascript/jquery-3.3.1.min.js"></script>
+    <script src="javascript/jquery.cookie.js"></script>
+    <script src="javascript/jquery.bxslider.min.js"></script>
+    <link rel="stylesheet" href="css/jquery.bxslider.css">
+    <link rel="stylesheet" href="css/vegas.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="javascript/vegas.min.js"></script>
+    <script src="javascript/script.js" defer type="text/javascript"></script>
+</head>
+<style>
+       #notice_wrap{
+            width: 300px;
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            box-shadow: 0 0 8px #000;
+        }
+        .closeWrap{
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 5px 10px;
+            
+        }
+        .closeBtn{
+            margin-left: 20px;
+            cursor: pointer;
+            
+        }
+</style>
+<script>
+    $(function(){
+        //쿠키("popup")의 값이 'none' 이면 id값이 'notice_wrap'인 요소를 숨깁니다.
+        if($.cookie('popup')== 'none'){
+            $("#notice_wrap").hide();
+        }
+        //class 값이 'closeBtn' 인 요소를 클릭하면 체크 박스의 체크 유무에 따라 쿠키를 생성하여 3일간만 저장합니다.
+        var $expiresChk = $("#expiresChk");
+        $(".closeBtn").on("click",closePop);
+        function closePop(){
+            if($expiresChk.is(":checked")){
+                $.cookie("popup","none",{expires:3,path:"/"});
+            }
+            $("#notice_wrap").fadeOut("fast");
+        }
+    });
+</script>
+<body>
+    <header>
+        <div class="top">
+            <div class="logo">
+                <a href="#"><img src="images/logo.png" alt="로고이미지"></a>
+            </div>
+            <nav class="menu">
+                <ul class="navi">
+                    <li>
+                        <a href="#">천문대소개</a>
+                    <ul class="submenu">
+                        <li><a href="#">인사말 </a></li>
+                        <li><a href="#">천문대소식</a></li>
+                        <li><a href="#">오시는길</a></li>
+                    </ul>
+                    </li>
+                        <li><a href="#">이용안내</a>
+                            <ul class="submenu">
+                                <li><a href="#">프로그램 </a></li>
+                                <li><a href="#">관람시간표</a></li>
+                                <li><a href="#">이달의별자리</a></li>
+                            </ul>
+                            </li>
+                        <li><a href="#">천문대예약</a>
+                            <ul class="submenu">
+                                <li><a href="#">관람예약 </a></li>
+                                <li><a href="#">예약확인</a></li>
+                                <li><a href="#">예약취소</a></li>
+                            </ul>
+                            </li>
+                            <li><a href="#">커뮤니티</a>
+                                <ul class="submenu">
+                                    <li><a href="#">공지사항 </a></li>
+                                    <li><a href="#">방문후기</a></li>
+                                    <li><a href="#">자유게시판</a></li>
+                                </ul>
+                                </li>
+                </li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="bodywrap">
+        <div class="imgslide">
+                <img src="images/pexels-architect_01.jpg" width="1000px" height="300px" alt="이미지1">
+                <img src="images/pexels-architect_02.jpg" width="1000px" height="300px" alt="이미지2">             
+                <img src="images/pexels-architect_03.jpg" width="1000px" height="300px" alt="이미지3">
+            
+        </div>
+
+            <div class="contents">
+                <ul class="tabmenu">
+                    <li class="active">
+                        <a href="#">공지사항</a>
+                        <div class="notice">
+                            <ul>
+                                <li><a href="#">하늘과 바람과 별과 詩 사생대회<span>2022.03.22</span></a></li>
+                                <li> <a href="#">하계기간 야간 연장운영합니다.<span>2022.03.23</span></a></li>
+                                <li> <a href="#">청소년 대상 천문교실 안내<span>2022.03.24</span></a></li>
+                                <li> <a href="#">제1회 별사진 공모전 개최됩니다.<span>2022.03.25</span></a></li>
+                             
+                                                              
+                            </ul>   
+                        </div>
+                    </li>
+                    <li><a href="#">갤러리</a>
+                        <div class="gallery">
+
+                        </div>
+                        <!-- <div class="gallery">
+                            <ul>
+                                <li><a href="#"><img src="images/icon1.jpg" alt="갤러리 이미지1"></a></li>
+                                <li><a href="#"><img src="images/icon2.jpg" alt="갤러리 이미지2"></a></li>
+                                <li><a href="#"><img src="images/icon3.jpg" alt="갤러리 이미지3"></a></li>
+                            </ul>
+                        </div> -->
+                    </li>
+                </ul>
+                <div class="otherwrap">
+                    <div class="banner">
+                        <!-- <a href="#">
+                            <img src="images/banner.jpg" alt="배너 이미지">
+                            <h4 class="bntext">배너</h4>
+                        </a> -->
+                    </div>
+                    <div class="shortcut">
+                        <a href="#">
+                            <img src="images/shortcut.jpg" alt="바로가기 이미지">
+                            <h4 class="sctext">바로가기</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- 레이어 팝업창 영역 -->
+    <!-- <div id="layer">
+        <div class="layer_up">
+            <div class="uptitle">하늘과 바람과 별과 詩 사생대회</div>
+            <div class="upbody">
+            윤동주 시인의 시집 &lt;하늘과 바람과 별과 詩&gt; 출간
+            72주년을 맞이하여 천문대에서 개최하는 사생대회가 열립니다.
+            별 하나에 추억, 사랑, 쓸쓸함, 동경 그리고 시와, 어머니를 그렸던 
+            시인처럼 별같은 마음을 가진 분들은 참여해 주세요.
+            </div>
+            <div class="btn">닫기</div>
+
+        </div>
+    </div> -->
+
+    <footer>
+        <div class="btlogo">
+          <a href="#"><img src="images/logo_bottom.png" alt="하단로고"></a></div>
+        <div class="site">
+                <div class="btmenu">
+                    <ul>
+                        <li><a href="sub_page/parrallax.html" target="_blank">회사소개</a></li>
+                        <li><a href="sub_page/tubular.html" target="_blank">회사유튜브연결</a></li>
+                        <li><a href="sub_page/memberjoin.html" target="_blank">회사찾아오는길</a></li>
+                    </ul>
+                </div>
+                <div class="copy">
+                    COPYRIGHT &#169; by WEBDESIGN. ALL RIGHTS RESERVED</div>
+        </div>
+    </footer>
+    <div id="notice_wrap">
+        <img src="images/sky.jpg" alt="공지사항이미지" width="300px" height="300px">
+        <p class="closeWrap">
+            <input type="checkbox" name="expiresChk" id="expiresChk">
+            <label for="expiresChk">3일 동안 이 창 열기 않기</label>
+            <button class="closeBtn">닫기</button>
+        </p>
+    </div>
+    <script>
+        $(function(){
+            $('.imgslide').bxSlider({
+                    auto: true, //자동으로 애니메이션 시작
+                    autoControls: true, //시작 및 중지버튼 표시
+                    speed:500,          //애니메이션 전환 속도 설정
+                    pause:1000,         //애니메이션 유지 시간
+                    stopAutoOnClick: true, //이전(<) 또는 다음(>) 버튼을 누르면 슬라이드가 정지됨
+                    pager: true, //페이지 표시 보여짐
+                    
+                    });
+        });
+
+
+        $(function(){
+        
+        $('.banner').vegas({
+                slides: [
+                { src: 'images/city-1.jpg' },
+                { src: 'images/city-2.jpg' },
+                { src: 'images/city-3.jpg' },
+                    {   src: 'videos/sea.jpg',
+                        video: {
+                            src: [
+                                'videos/sea.mp4'
+                                
+                            ],
+                            loop: true,
+                            // mute: true
+                        }
+                    }
+                ]
+            });
+        });
+        </script>
+</body>
+</html>
